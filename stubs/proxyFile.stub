@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="{{revision}}" name="{{displayName}}">
+    <Basepaths>{{basePath}}</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedBy>{{createdBy}}</CreatedBy>
+    <Description>{{description}}</Description>
+    <DisplayName>{{displayName}}</DisplayName>
+    <LastModifiedBy>opdk@apigee.com</LastModifiedBy>
+    <Policies>
+    {{policies}}
+    </Policies>
+    <ProxyEndpoints>
+    {{proxyEndpoints}}
+    </ProxyEndpoints>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+    {{targetEndpoints}}
+    </TargetEndpoints>
+</APIProxy>
