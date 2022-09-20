@@ -11,5 +11,7 @@ This command will generate this file for you
 ```
 npx apogi prepareToBundle [proxyPath] --displayName <string> -v <reveisionNumber> --basePath <proxyBasePath> --createdBy <creatorEmail>
 ```
+- proxyPath is the directory where your proxy lies in (where the 3 main folders exists, policies,proxies,targets)
+-
 
 
