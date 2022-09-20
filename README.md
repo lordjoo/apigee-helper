@@ -13,4 +13,9 @@ npx apogi prepareToBundle [proxyPath] --displayName <string> -v <reveisionNumber
 ```
 - proxyPath is the directory where your proxy lies in (where the 3 main folders exists, policies,proxies,targets)
 
+2. Extract Varaibles From XML
+This command asks you for a XML Payloa dand generate a EV policy for you :-)
+```
+npx apogi extractFromXML [proxyPath] --name <policyName>
+```
 
