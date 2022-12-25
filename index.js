@@ -24,6 +24,7 @@ program.command("extractFromXML")
     .description("Generate EV Policy for XML Payload")
     .argument("<proxyPath>", "The path to the proxy folder")
     .option("-n, --name <string>","Policy Name")
+    .option("-i, --input <string>","Input XML File")
     .action(extractPolicyFromXML)
 
 

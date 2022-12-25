@@ -26,13 +26,23 @@ module.exports.extractPolicyFromXML = async (str, options) => {
         return;
     }
 
-    const _xmlData = await prompts({
-        type: 'text',
-        name: 'value',
-        message: 'Enter The XML Payload'
-    });
+    let xmlData = "";
 
-    const xmlData = _xmlData.value;
+    if (options.input) {
+        let inputPath = path.join(options.input);
+        if (!fs.existsSync(inputPath)) {
+            console.error(chalk.red(`Input file ${inputPath} does not exist`));
+            return;
+        }
+        xmlData = fs.readFileSync(inputPath, "utf8");
+    } else {    
+        const _xmlData = await prompts({
+            type: 'text',
+            name: 'value',
+            message: 'Enter The XML Payload'
+        });
+        xmlData = _xmlData.value;
+    }
 
     const isValid = XMLValidator.validate(xmlData);
     if (!isValid) {
@@ -59,7 +69,10 @@ module.exports.extractPolicyFromXML = async (str, options) => {
     });
 
     let variablesXMLStr = "";
-    let variablesKeys = Object.keys(jsonObj).filter((key) => !key.includes("@_xmlns:"));
+    let variablesKeys = Object.keys(jsonObj).filter(
+        (key) => !key.includes("@_xmlns") || !key.includes("#text")
+    );
+
     variablesKeys.forEach((key) => {
         let variableName = key.replaceAll(rootKey,"");
         variableName = variableName.replace("/","")
@@ -73,10 +86,13 @@ module.exports.extractPolicyFromXML = async (str, options) => {
     });
 
     let policyStub = fs.readFileSync(path.join(__dirname,"../stubs/evPolicy.stub"),"utf8");
-    policyStub = policyStub.replace("{{policyName}}",options.name)
+    policyStub = policyStub.replaceAll("{{policyName}}",options.name)
         .replace("{{namespaces}}",namespacesXMLStr)
         .replace("{{variables}}",variablesXMLStr);
 
+    if (!fs.existsSync(path.join(str,"policies"))) {
+        fs.mkdirSync(path.join(str,"policies"));
+    }
     fs.writeFileSync(path.join(path.join(str,"policies"),`${options.name}.xml`),policyStub);
     console.log(chalk.green("Policy Generated Successfully"));
 }
