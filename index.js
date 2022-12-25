@@ -5,7 +5,7 @@ const {prepareToBundle} = require("./actions/prepareToBundle");
 const {extractPolicyFromXML} = require("./actions/extractPolicyFromXML");
 const program = new Command();
 
-program.name("apogi")
+program.name("apigee-helper")
     .description("Some Spells I made to help you develop apigee proxies")
     .version("0.0.1")
 
