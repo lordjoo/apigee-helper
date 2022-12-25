@@ -16,6 +16,6 @@ npx apigee-helper prepareToBundle [proxyPath] --displayName <string> -v <reveisi
 2. Extract Varaibles From XML
 This command asks you for a XML Payloa dand generate a EV policy for you :-)
 ```
-npx apigee-helper extractFromXML [proxyPath] --name <policyName>
+npx apigee-helper extractFromXML [proxyPath] --name <policyName> -i <xmlPayloadPath> 
 ```
 
